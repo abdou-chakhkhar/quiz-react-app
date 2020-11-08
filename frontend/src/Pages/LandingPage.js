@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./LandingPage.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function LandingPage() {
   const [email, setEmail] = useState("");
@@ -49,8 +50,8 @@ function LandingPage() {
       <div className="register__login">
         <h2>Sign up as</h2>
         <div className="btn__grp">
-          <button onClick={SignUp}>Teacher</button>
-          <button onClick={SignUp}>Student</button>
+          <Link to="/signup-teacher">Teacher</Link>
+          <Link to="/signup-student">Student</Link>
         </div>
       </div>
     </div>
