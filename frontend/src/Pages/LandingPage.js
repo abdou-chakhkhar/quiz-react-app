@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./LandingPage.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function LandingPage() {
   const [email, setEmail] = useState("");
@@ -8,15 +9,8 @@ function LandingPage() {
 
   let history = useHistory();
 
-  const SignIn = (e) => {
-    e.preventDefault();
-  };
-  const SignUp = (e) => {
-    e.preventDefault();
-
-    document.getElementById("clearE").value = "";
-    document.getElementById("clearP").value = "";
-  };
+  const [teacher, setTeacher] = useState("teacher");
+  const [student, setStudent] = useState("student");
 
   return (
     <div className="login">
@@ -37,11 +31,7 @@ function LandingPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button
-            className="login__signInButton"
-            type="submit"
-            onClick={SignIn}
-          >
+          <button className="login__signInButton" type="submit">
             Login
           </button>
         </form>
@@ -49,8 +39,22 @@ function LandingPage() {
       <div className="register__login">
         <h2>Sign up as</h2>
         <div className="btn__grp">
-          <button onClick={SignUp}>Teacher</button>
-          <button onClick={SignUp}>Student</button>
+          <Link
+            to={{
+              pathname: "/signup",
+              state: teacher,
+            }}
+          >
+            Teacher
+          </Link>
+          <Link
+            to={{
+              pathname: "/signup",
+              state: student,
+            }}
+          >
+            Student
+          </Link>
         </div>
       </div>
     </div>
