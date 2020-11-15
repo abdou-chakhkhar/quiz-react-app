@@ -8,9 +8,20 @@ router.post("/", async (req, res) => {
 
   try {
     await user.save();
-    res.status(201).send(user);
+    res.status(201).send({ user });
   } catch (e) {
-    console.log("hna fen kayn la3ba");
+    res.status(400).send(e.message);
+  }
+});
+
+router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findByCredentials(
+      req.body.email,
+      req.body.password
+    );
+    res.send(user);
+  } catch (e) {
     res.status(400).send(e);
   }
 });
